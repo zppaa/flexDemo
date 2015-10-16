@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>移动端flex终极变态布局</title>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<link type="text/css" rel="stylesheet" href="xiaoye.css"></link>
+</head>
+<body>
+	<div class="row row-wrap">
+		<div class="col bg-r"></div>
+		<div class="col bg-y">2</div>
+		<div class="col bg-b">3</div>
+	</div>
+	<div class="row">
+		<div class="col col-20 bg-r">20%</div>
+		<div class="col col-30 bg-y">30%</div>
+		<div class="col col-50 bg-b">50%</div>
+
+	</div>
+	<div class="row">
+		<div class="col col-10 bg-w">10%</div>
+		<div class="col col-20 bg-p">20%</div>
+		<div class="col col-70 bg-g">70%</div>
+	</div>
+	<div class="row">
+		<div class="col col-33 bg-r">33%</div>
+		<div class="col col-33 bg-y">33%</div>
+		<div class="col col-33 bg-b">33%</div>
+	</div>
+	<div class="row row-wrap">
+		<div class="col col-33 bg-w">33%</div>
+		<div class="col col-33 bg-p">33%</div>
+		<div class="col col-33 bg-g">33%</div>
+		<div class="col col-33 bg-g">33%</div>
+		<div class="col col-33 bg-g">33%</div>
+		<div class="col col-33 bg-g">33%</div>
+		
+	</div>
+	<!--切记！！！！！在添加col-xxx的时候  前面一定要有col，不然低端安卓有问题-->
+</body>
+</html>
+<script type="text/javascript">
+
+// 	(function( $ ){  
+// 2.  
+// 3.  var methods = {  
+// 4.     init : function( options ) {  
+// 5.  
+// 6.       return this.each(function(){  
+// 7.           
+// 8.         var $this = $(this),  
+// 9.             data = $this.data('tooltip'),  
+// 10.             tooltip = $('<div />', {  
+// 11.               text : $this.attr('title')  
+// 12.             });  
+// 13.           
+// 14.         // If the plugin hasn't been initialized yet  
+// 15.         if ( ! data ) {  
+// 16.           
+// 17.           /* 
+// 18.             Do more setup stuff here 
+// 19.           */  
+// 20.  
+// 21.           $(this).data('tooltip', {  
+// 22.               target : $this,  
+// 23.               tooltip : tooltip  
+// 24.           });  
+// 25.  
+// 26.         }  
+// 27.       });  
+// 28.     },  
+// 29.     destroy : function( ) {  
+// 30.  
+// 31.       return this.each(function(){  
+// 32.  
+// 33.         var $this = $(this),  
+// 34.             data = $this.data('tooltip');  
+// 35.  
+// 36.         // Namespacing FTW  
+// 37.         $(window).unbind('.tooltip');  
+// 38.         data.tooltip.remove();  
+// 39.         $this.removeData('tooltip');  
+// 40.  
+// 41.       })  
+// 42.  
+// 43.     },  
+// 44.     reposition : function( ) { // ... },  
+// 45.     show : function( ) { // ... },  
+// 46.     hide : function( ) { // ... },  
+// 47.     update : function( content ) { // ...}  
+// 48.  };  
+// 49.  
+// 50.  $.fn.tooltip = function( method ) {  
+// 51.      
+// 52.    if ( methods[method] ) {  
+// 53.      return methods[method].apply( this, Array.prototype.slice.call( arguments, 1 ));  
+// 54.    } else if ( typeof method === 'object' || ! method ) {  
+// 55.      return methods.init.apply( this, arguments );  
+// 56.    } else {  
+// 57.      $.error( 'Method ' +  method + ' does not exist on jQuery.tooltip' );  
+// 58.    }      
+// 59.    
+// 60.  };  
+// 61.  
+// 62.})( jQuery );  
+(function($){
+	var methods = {
+		init : function(options){
+			return this.each(function(){
+				var $this = $(this),
+				data = $this.data('tooltip'),
+				tooltip = $('<div />',{
+					text : $this.attr('title');
+				});
+				if(!data){
+					$(this).data('tooltip',{
+						target:$this,
+						tooltip:tooltip
+					});
+				}
+			});
+		},
+		destroy : function(){
+			return this.each(function(){
+				var $this = $(this),
+				data = $this.data('tooltip');
+				$(window).unbind('tooltip');
+				data.tooltip.remove();
+				$this.removeData('tooltip');
+			});
+		};
+	$.fn.tooltip = function(method){
+		if(methods[method]){
+			return methods[method].apply(this,Array.prototype.slice.call(arguments,1));
+		}else if (typeof method === "object" || !method){
+			return methods.init.apply(this,arguments);
+		}else{
+			$.error('Method')
+		}
+	};
+
+	}
+})(jQuery)
+</script>
